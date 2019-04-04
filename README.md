@@ -1,5 +1,5 @@
 # Frogger-Game
-Frogger Game - VHDL
+Frogger Game - VHDL<br/>
 9/2018
 
 In this project I developed a Frogger game in VHDL.
