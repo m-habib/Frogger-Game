@@ -1,0 +1,39 @@
+library IEEE;
+use IEEE.STD_LOGIC_1164.all;
+--use IEEE.std_logic_unsigned.all;
+--use ieee.numeric_std.all;
+--use ieee.std_logic_arith.all;
+-- Alex Grinshpun April 2017
+-- Dudy Nov 13 2017
+
+
+entity life_counter is
+port 	(
+		--////////////////////	Clock Input	 	////////////////////	
+	   CLK  					: in std_logic;
+		RESETn				: in std_logic;
+		carHit_N				: in std_logic;
+		Drawning_N			: in std_logic;
+		land_border_hit_N : in std_logic;
+		life					: out integer;
+		died					: out std_logic
+	);
+end life_counter;
+
+architecture behav of life_counter is 
+signal life_tmp : integer;
+begin
+process ( RESETn, CLK)
+   begin
+	if RESETn = '0' then
+		life_tmp <= 18;
+		life <= 9;
+	elsif rising_edge(CLK) then
+		if (carHit_N = '0' or Drawning_N = '0' or land_border_hit_N = '0') then
+			life_tmp <= life_tmp - 1;
+		end if;
+		life <= life_tmp / 2;
+	end if;
+  end process;		
+end behav;		
+		

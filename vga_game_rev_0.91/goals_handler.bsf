@@ -1,0 +1,107 @@
+/*
+WARNING: Do NOT edit the input and output ports in this file in a text
+editor if you plan to continue editing the block that represents it in
+the Block Editor! File corruption is VERY likely to occur.
+*/
+/*
+Copyright (C) 2017  Intel Corporation. All rights reserved.
+Your use of Intel Corporation's design tools, logic functions 
+and other software and tools, and its AMPP partner logic 
+functions, and any output files from any of the foregoing 
+(including device programming or simulation files), and any 
+associated documentation or information are expressly subject 
+to the terms and conditions of the Intel Program License 
+Subscription Agreement, the Intel Quartus Prime License Agreement,
+the Intel MegaCore Function License Agreement, or other 
+applicable license agreement, including, without limitation, 
+that your use is for the sole purpose of programming logic 
+devices manufactured by Intel and sold by Intel or its 
+authorized distributors.  Please refer to the applicable 
+agreement for further details.
+*/
+(header "symbol" (version "1.2"))
+(symbol
+	(rect 16 16 296 176)
+	(text "goals_handler" (rect 5 0 87 19)(font "Intel Clear" (font_size 8)))
+	(text "inst" (rect 8 139 24 156)(font "Intel Clear" ))
+	(port
+		(pt 0 32)
+		(input)
+		(text "CLOCK" (rect 0 0 41 19)(font "Intel Clear" (font_size 8)))
+		(text "CLOCK" (rect 21 27 62 46)(font "Intel Clear" (font_size 8)))
+		(line (pt 0 32)(pt 16 32))
+	)
+	(port
+		(pt 0 48)
+		(input)
+		(text "resetN" (rect 0 0 38 19)(font "Intel Clear" (font_size 8)))
+		(text "resetN" (rect 21 43 59 62)(font "Intel Clear" (font_size 8)))
+		(line (pt 0 48)(pt 16 48))
+	)
+	(port
+		(pt 0 64)
+		(input)
+		(text "oCoord_X[31..0]" (rect 0 0 96 19)(font "Intel Clear" (font_size 8)))
+		(text "oCoord_X[31..0]" (rect 21 59 117 78)(font "Intel Clear" (font_size 8)))
+		(line (pt 0 64)(pt 16 64)(line_width 3))
+	)
+	(port
+		(pt 0 80)
+		(input)
+		(text "oCoord_Y[31..0]" (rect 0 0 96 19)(font "Intel Clear" (font_size 8)))
+		(text "oCoord_Y[31..0]" (rect 21 75 117 94)(font "Intel Clear" (font_size 8)))
+		(line (pt 0 80)(pt 16 80)(line_width 3))
+	)
+	(port
+		(pt 280 32)
+		(output)
+		(text "goal_ach_req_1" (rect 0 0 94 19)(font "Intel Clear" (font_size 8)))
+		(text "goal_ach_req_1" (rect 165 27 259 46)(font "Intel Clear" (font_size 8)))
+		(line (pt 280 32)(pt 264 32))
+	)
+	(port
+		(pt 280 48)
+		(output)
+		(text "goal_ach_req_2" (rect 0 0 94 19)(font "Intel Clear" (font_size 8)))
+		(text "goal_ach_req_2" (rect 165 43 259 62)(font "Intel Clear" (font_size 8)))
+		(line (pt 280 48)(pt 264 48))
+	)
+	(port
+		(pt 280 64)
+		(output)
+		(text "goal_ach_req_3" (rect 0 0 94 19)(font "Intel Clear" (font_size 8)))
+		(text "goal_ach_req_3" (rect 165 59 259 78)(font "Intel Clear" (font_size 8)))
+		(line (pt 280 64)(pt 264 64))
+	)
+	(port
+		(pt 280 80)
+		(output)
+		(text "goal_ach_req_4" (rect 0 0 94 19)(font "Intel Clear" (font_size 8)))
+		(text "goal_ach_req_4" (rect 165 75 259 94)(font "Intel Clear" (font_size 8)))
+		(line (pt 280 80)(pt 264 80))
+	)
+	(port
+		(pt 280 96)
+		(output)
+		(text "goal_ach_req_5" (rect 0 0 94 19)(font "Intel Clear" (font_size 8)))
+		(text "goal_ach_req_5" (rect 165 91 259 110)(font "Intel Clear" (font_size 8)))
+		(line (pt 280 96)(pt 264 96))
+	)
+	(port
+		(pt 280 112)
+		(output)
+		(text "collision_goal_frog_N" (rect 0 0 126 19)(font "Intel Clear" (font_size 8)))
+		(text "collision_goal_frog_N" (rect 133 107 259 126)(font "Intel Clear" (font_size 8)))
+		(line (pt 280 112)(pt 264 112))
+	)
+	(port
+		(pt 280 128)
+		(output)
+		(text "all_goals_achived" (rect 0 0 105 19)(font "Intel Clear" (font_size 8)))
+		(text "all_goals_achived" (rect 154 123 259 142)(font "Intel Clear" (font_size 8)))
+		(line (pt 280 128)(pt 264 128))
+	)
+	(drawing
+		(rectangle (rect 16 16 264 144))
+	)
+)

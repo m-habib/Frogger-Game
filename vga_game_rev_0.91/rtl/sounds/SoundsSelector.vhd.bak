@@ -1,0 +1,81 @@
+LIBRARY ieee;
+USE ieee.std_logic_1164.all;
+USE ieee.std_logic_arith.all;
+
+
+ENTITY Sounds_Selector IS
+	PORT
+		(
+			CLK_IN					:	IN  STD_LOGIC				;	
+			resetN					:  IN	 STD_LOGIC;
+			--Sinus : in std_logic_vector (15 downto 0);
+			--Square : in std_logic_vector (15 downto 0);
+			---FallInWaterSound : in std_logic_vector (15 downto 0);
+			--TreeFallSound : in std_logic_vector (15 downto 0);
+			--LevelUpSound : in std_logic_vector (15 downto 0);
+			--WinSound : in std_logic_vector (15 downto 0);
+			--GameOverSound : in std_logic_vector (15 downto 0);
+			InSound: in std_logic_vector (6 downto 0);
+         OutSound : out std_logic_vector (6 downto 0);
+			Enable : out std_logic 
+		);
+		
+END Sounds_Selector ;
+
+
+ARCHITECTURE behave OF Sounds_Selector  IS
+
+	BEGIN
+
+	PROCESS ( resetN,InSound)
+
+	variable current_sound : std_logic_vector (6 downto 0);
+
+	
+			BEGIN
+			
+				
+				IF resetN = '0' then
+				current_sound := (others =>'0');
+				Enable <= '0';
+				
+				elsif rising_edge(CLK_IN) then
+				if (InSound="0000001") then
+				Enable<='1';
+            current_sound :="0000001";
+
+				elsif (InSound = "0000010") then
+            Enable<='1';
+            current_sound :="0000010"; 
+			
+			   elsif (InSound = "0000100") then
+            Enable<='1';
+            current_sound :="0000100";
+			   
+				elsif (InSound = "0001000") then
+            Enable<='1';
+            current_sound :="0001000";
+			   
+				elsif (InSound = "0010000") then
+            Enable<='1';
+            current_sound :="0010000";
+			   
+				elsif (InSound = "0100000") then
+            Enable<='1';
+            current_sound :="0100000";
+			   
+				elsif (InSound = "1000000") then
+            Enable<='1';
+            current_sound :="1000000";	
+				
+				else
+
+				current_sound:= current_sound;
+				Enable<=(others =>'0');
+				end if;
+				
+				outsound<= current_sound;
+				end if;
+
+		END PROCESS;
+	END behave;

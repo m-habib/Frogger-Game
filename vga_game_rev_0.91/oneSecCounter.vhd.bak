@@ -1,0 +1,33 @@
+						
+				
+		
+library IEEE;
+use IEEE.STD_LOGIC_1164.all;
+use IEEE.std_logic_unsigned.all;
+use ieee.numeric_std.all;
+
+entity oneSecCounter is
+port 	(
+		CLK				: in std_logic;
+		RESETn			: in std_logic; 
+		Drawing_Request_A	: in std_logic;
+		Drawing_Request_B 	: in std_logic;
+		collision_N : out std_logic
+);
+end oneSecCounter;
+
+
+architecture behav of oneSecCounter is 
+begin
+	process ( RESETn,CLK)
+		begin
+		  if RESETn = '0' then
+				collision_N <= '1';
+		elsif rising_edge(CLK) then
+
+		if(wait_count < 250000000) then
+									state <= pause;
+									wait_count := wait_count + 1;
+									
+									
+									

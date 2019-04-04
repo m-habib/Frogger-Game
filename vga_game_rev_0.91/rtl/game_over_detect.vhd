@@ -1,0 +1,40 @@
+library IEEE;
+use IEEE.STD_LOGIC_1164.all;
+use ieee.std_logic_unsigned.all;
+
+-- Alex Grinshpun April 2017
+-- Dudy Nov 13 2017
+
+
+entity game_over_detect is
+port 	(
+		--////////////////////	Clock Input	 	////////////////////	
+	   CLK  						: in std_logic;
+		RESETn					: in std_logic;
+		died						: in std_logic;
+		time_done				: in std_logic;
+		restart_N				: in std_logic;
+		game_over				: out std_logic
+	);
+end game_over_detect;
+
+architecture behav of game_over_detect is 
+signal game_over_tmp : std_logic;
+begin
+	process (clk, resetN, restart_N)
+	variable I : integer;
+	variable score_credit : integer;
+	begin
+		if resetN = '0' or restart_N = '0' then
+			game_over <= '0';
+			game_over_tmp <= '0';
+		elsif (rising_edge(clk)) then	
+			if died = '1' or time_done = '1' then
+				game_over_tmp <= '1';
+			else
+				game_over_tmp <= '0';
+			end if;
+			game_over <= game_over_tmp;
+		end if;
+	end process;	
+end behav;

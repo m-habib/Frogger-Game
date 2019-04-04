@@ -1,0 +1,104 @@
+library IEEE;
+use IEEE.STD_LOGIC_1164.all;
+
+entity car_object is
+port 	(
+	   	CLK  		: in std_logic;
+		RESETn		: in std_logic;
+		oCoord_X	: in integer;
+		oCoord_Y	: in integer;
+		ObjectStartX	: in integer;
+		ObjectStartY 	: in integer;
+		drawing_request	: out std_logic ;
+		mVGA_RGB 	: out std_logic_vector(7 downto 0) 
+	);
+end car_object;
+
+architecture behav of car_object is
+
+constant object_X_size : integer := 30;
+constant object_Y_size : integer := 16;
+
+type ram_array is array(0 to object_Y_size - 1 , 0 to object_X_size - 1) of std_logic_vector(7 downto 0);  
+
+-- 8 bit - color definition : "RRRGGGBB"  
+constant object_colors: ram_array := ( 
+(x"00", x"00", x"00", x"F8", x"F8", x"F8", x"F8", x"F8", x"F8", x"F8", x"FC", x"F8", x"D4", x"B4", x"6C", x"25", x"D4", x"F8", x"F8", x"00", x"F8", x"F8", x"F8", x"F8", x"F8", x"F8", x"F8", x"00", x"00", x"00"),
+(x"00", x"00", x"D8", x"6E", x"F8", x"F8", x"F8", x"F8", x"F8", x"F8", x"D8", x"D4", x"D4", x"B4", x"6C", x"25", x"D4", x"FC", x"01", x"44", x"03", x"FC", x"FC", x"F8", x"F8", x"F8", x"F8", x"D4", x"FC", x"00"),
+(x"00", x"FC", x"F8", x"B5", x"F8", x"F8", x"F8", x"F8", x"D8", x"F8", x"D4", x"90", x"8C", x"6C", x"49", x"49", x"48", x"68", x"48", x"44", x"8C", x"B4", x"D8", x"F8", x"F8", x"F8", x"F8", x"D4", x"D4", x"00"),
+(x"00", x"FC", x"D8", x"D5", x"F8", x"F8", x"F8", x"6C", x"48", x"91", x"91", x"B1", x"D4", x"D4", x"B4", x"B4", x"B0", x"B0", x"B0", x"B0", x"B4", x"B4", x"D4", x"D4", x"D8", x"F8", x"D4", x"AC", x"F8", x"00"),
+(x"00", x"F8", x"F8", x"F8", x"F8", x"F8", x"90", x"24", x"49", x"6D", x"6D", x"8D", x"F8", x"F8", x"F8", x"F8", x"F8", x"F8", x"F8", x"F8", x"F8", x"90", x"49", x"6D", x"6D", x"8C", x"F8", x"D0", x"F8", x"00"),
+(x"00", x"F8", x"FC", x"FD", x"F8", x"D4", x"48", x"49", x"49", x"49", x"49", x"91", x"F8", x"F8", x"F8", x"F8", x"F8", x"F8", x"F8", x"F8", x"F8", x"B0", x"49", x"6D", x"6D", x"49", x"D4", x"FC", x"F8", x"00"),
+(x"00", x"F8", x"FD", x"FD", x"F8", x"D4", x"24", x"49", x"49", x"49", x"49", x"90", x"F8", x"F8", x"F8", x"F8", x"F8", x"F8", x"F8", x"F8", x"F8", x"B4", x"49", x"49", x"49", x"49", x"91", x"FD", x"F8", x"00"),
+(x"00", x"F8", x"FD", x"FD", x"F8", x"D4", x"24", x"49", x"49", x"49", x"49", x"90", x"F8", x"F8", x"F8", x"F8", x"F8", x"F8", x"F8", x"F8", x"D8", x"B0", x"48", x"49", x"49", x"49", x"91", x"FD", x"F8", x"00"),
+(x"00", x"F8", x"FD", x"FD", x"F8", x"D4", x"24", x"25", x"49", x"49", x"49", x"90", x"F8", x"F8", x"F8", x"F8", x"F8", x"F8", x"F8", x"F8", x"F8", x"B4", x"48", x"49", x"49", x"49", x"90", x"FD", x"F8", x"00"),
+(x"00", x"F8", x"FD", x"FD", x"FC", x"D8", x"44", x"24", x"25", x"49", x"49", x"8C", x"F8", x"F8", x"F8", x"F8", x"F8", x"F8", x"F8", x"F8", x"F8", x"B4", x"24", x"24", x"24", x"24", x"90", x"FD", x"F8", x"00"),
+(x"00", x"F8", x"F8", x"FD", x"FC", x"F8", x"68", x"24", x"24", x"24", x"25", x"6C", x"F8", x"F8", x"F8", x"F8", x"F8", x"F8", x"F8", x"F8", x"F8", x"B0", x"24", x"24", x"24", x"48", x"D9", x"FC", x"F8", x"00"),
+(x"00", x"F8", x"F8", x"F8", x"F8", x"F8", x"B0", x"24", x"24", x"24", x"24", x"48", x"F8", x"F8", x"F8", x"F8", x"F8", x"F8", x"F8", x"F8", x"F8", x"90", x"48", x"48", x"48", x"8C", x"F8", x"D4", x"F8", x"00"),
+(x"00", x"FC", x"D9", x"D5", x"F8", x"F8", x"F8", x"90", x"6C", x"8C", x"90", x"90", x"B0", x"B0", x"90", x"90", x"90", x"90", x"90", x"90", x"B0", x"B4", x"D4", x"F8", x"F8", x"F8", x"F4", x"A8", x"F8", x"00"),
+(x"00", x"FC", x"F8", x"D4", x"F8", x"F8", x"F8", x"F8", x"F8", x"F8", x"B4", x"8D", x"49", x"49", x"25", x"25", x"48", x"48", x"24", x"24", x"8C", x"D4", x"D8", x"F8", x"F8", x"FC", x"F8", x"D0", x"F8", x"00"),
+(x"00", x"00", x"F8", x"B4", x"F8", x"F8", x"F8", x"F8", x"FC", x"F8", x"F8", x"6D", x"49", x"49", x"49", x"25", x"FC", x"FC", x"24", x"24", x"03", x"FC", x"FC", x"F8", x"F8", x"F8", x"D3", x"D0", x"FC", x"00"),
+(x"00", x"00", x"00", x"00", x"F8", x"F8", x"F8", x"F8", x"F8", x"F8", x"D4", x"00", x"00", x"00", x"00", x"00", x"F8", x"F8", x"F8", x"00", x"F8", x"F8", x"F8", x"F8", x"F8", x"F8", x"F8", x"00", x"00", x"00")
+);
+
+-- one bit mask  0 - off 1 dispaly 
+type object_form is array (0 to object_Y_size - 1 , 0 to object_X_size - 1) of std_logic;
+constant object : object_form := (
+("000000000010000000000000000000"),
+("000011111111111111000111110000"),
+("001111111111111111111111111100"),
+("011111111111111111111111111110"),
+("011111111111111111111111111110"),
+("011111111111111111111111111110"),
+("011111111111111111111111111110"),
+("011111111111111111111111111110"),
+("011111111111111111111111111110"),
+("011111111111111111111111111110"),
+("011111111111111111111111111110"),
+("011111111111111111111111111110"),
+("011111111111111111111111111110"),
+("001111111111111111111111111100"),
+("000001111110000011000111110000"),
+("000000000000000000000000000000")
+);
+
+signal bCoord_X : integer := 0;-- offset from start position 
+signal bCoord_Y : integer := 0;
+
+signal drawing_X : std_logic := '0';
+signal drawing_Y : std_logic := '0';
+
+signal objectEndX : integer;
+signal objectEndY : integer;
+
+begin
+
+-- Calculate object end boundaries
+objectEndX	<= object_X_size+ObjectStartX;
+objectEndY	<= object_Y_size+ObjectStartY;
+
+-- Signals drawing_X[Y] are active when obects coordinates are being crossed
+
+-- test if ooCoord is in the rectangle defined by Start and End 
+	drawing_X	<= '1' when  (oCoord_X  >= ObjectStartX) and  (oCoord_X < objectEndX) else '0';
+    drawing_Y	<= '1' when  (oCoord_Y  >= ObjectStartY) and  (oCoord_Y < objectEndY) else '0';
+
+-- calculate offset from start corner 
+	bCoord_X 	<= (oCoord_X - ObjectStartX) when ( drawing_X = '1' and  drawing_Y = '1'  ) else 0 ; 
+	bCoord_Y 	<= (oCoord_Y - ObjectStartY) when ( drawing_X = '1' and  drawing_Y = '1'  ) else 0 ; 
+
+
+process ( RESETn, CLK)
+   begin
+	if RESETn = '0' then
+	    mVGA_RGB	<=  (others => '0') ; 	
+		drawing_request	<=  '0' ;
+
+		elsif rising_edge(CLK) then
+			mVGA_RGB	<=  object_colors(bCoord_Y , bCoord_X);	--get from colors table 
+			drawing_request	<= object(bCoord_Y , bCoord_X) and drawing_X and drawing_Y ; -- get from mask table if inside rectangle  
+	end if;
+  end process;
+end behav;		
+
+--generated with PNGtoVHDL tool by Ben Wellingstein

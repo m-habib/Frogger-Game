@@ -1,0 +1,156 @@
+/*
+WARNING: Do NOT edit the input and output ports in this file in a text
+editor if you plan to continue editing the block that represents it in
+the Block Editor! File corruption is VERY likely to occur.
+*/
+/*
+Copyright (C) 2017  Intel Corporation. All rights reserved.
+Your use of Intel Corporation's design tools, logic functions 
+and other software and tools, and its AMPP partner logic 
+functions, and any output files from any of the foregoing 
+(including device programming or simulation files), and any 
+associated documentation or information are expressly subject 
+to the terms and conditions of the Intel Program License 
+Subscription Agreement, the Intel Quartus Prime License Agreement,
+the Intel MegaCore Function License Agreement, or other 
+applicable license agreement, including, without limitation, 
+that your use is for the sole purpose of programming logic 
+devices manufactured by Intel and sold by Intel or its 
+authorized distributors.  Please refer to the applicable 
+agreement for further details.
+*/
+(header "symbol" (version "1.1"))
+(symbol
+	(rect 16 16 264 288)
+	(text "display_achived_goal" (rect 5 0 89 12)(font "Arial" ))
+	(text "inst" (rect 8 256 20 268)(font "Arial" ))
+	(port
+		(pt 0 32)
+		(input)
+		(text "CLK" (rect 0 0 20 12)(font "Arial" ))
+		(text "CLK" (rect 21 27 41 39)(font "Arial" ))
+		(line (pt 0 32)(pt 16 32)(line_width 1))
+	)
+	(port
+		(pt 0 48)
+		(input)
+		(text "RESETn" (rect 0 0 38 12)(font "Arial" ))
+		(text "RESETn" (rect 21 43 59 55)(font "Arial" ))
+		(line (pt 0 48)(pt 16 48)(line_width 1))
+	)
+	(port
+		(pt 0 64)
+		(input)
+		(text "all_goals_achived" (rect 0 0 69 12)(font "Arial" ))
+		(text "all_goals_achived" (rect 21 59 90 71)(font "Arial" ))
+		(line (pt 0 64)(pt 16 64)(line_width 1))
+	)
+	(port
+		(pt 0 80)
+		(input)
+		(text "achived_1" (rect 0 0 40 12)(font "Arial" ))
+		(text "achived_1" (rect 21 75 61 87)(font "Arial" ))
+		(line (pt 0 80)(pt 16 80)(line_width 1))
+	)
+	(port
+		(pt 0 96)
+		(input)
+		(text "achived_2" (rect 0 0 41 12)(font "Arial" ))
+		(text "achived_2" (rect 21 91 62 103)(font "Arial" ))
+		(line (pt 0 96)(pt 16 96)(line_width 1))
+	)
+	(port
+		(pt 0 112)
+		(input)
+		(text "achived_3" (rect 0 0 41 12)(font "Arial" ))
+		(text "achived_3" (rect 21 107 62 119)(font "Arial" ))
+		(line (pt 0 112)(pt 16 112)(line_width 1))
+	)
+	(port
+		(pt 0 128)
+		(input)
+		(text "achived_4" (rect 0 0 42 12)(font "Arial" ))
+		(text "achived_4" (rect 21 123 63 135)(font "Arial" ))
+		(line (pt 0 128)(pt 16 128)(line_width 1))
+	)
+	(port
+		(pt 0 144)
+		(input)
+		(text "achived_5" (rect 0 0 41 12)(font "Arial" ))
+		(text "achived_5" (rect 21 139 62 151)(font "Arial" ))
+		(line (pt 0 144)(pt 16 144)(line_width 1))
+	)
+	(port
+		(pt 0 160)
+		(input)
+		(text "drawing_req_1" (rect 0 0 57 12)(font "Arial" ))
+		(text "drawing_req_1" (rect 21 155 78 167)(font "Arial" ))
+		(line (pt 0 160)(pt 16 160)(line_width 1))
+	)
+	(port
+		(pt 0 176)
+		(input)
+		(text "drawing_req_2" (rect 0 0 59 12)(font "Arial" ))
+		(text "drawing_req_2" (rect 21 171 80 183)(font "Arial" ))
+		(line (pt 0 176)(pt 16 176)(line_width 1))
+	)
+	(port
+		(pt 0 192)
+		(input)
+		(text "drawing_req_3" (rect 0 0 59 12)(font "Arial" ))
+		(text "drawing_req_3" (rect 21 187 80 199)(font "Arial" ))
+		(line (pt 0 192)(pt 16 192)(line_width 1))
+	)
+	(port
+		(pt 0 208)
+		(input)
+		(text "drawing_req_4" (rect 0 0 60 12)(font "Arial" ))
+		(text "drawing_req_4" (rect 21 203 81 215)(font "Arial" ))
+		(line (pt 0 208)(pt 16 208)(line_width 1))
+	)
+	(port
+		(pt 0 224)
+		(input)
+		(text "drawing_req_5" (rect 0 0 59 12)(font "Arial" ))
+		(text "drawing_req_5" (rect 21 219 80 231)(font "Arial" ))
+		(line (pt 0 224)(pt 16 224)(line_width 1))
+	)
+	(port
+		(pt 248 32)
+		(output)
+		(text "drawing_request_1" (rect 0 0 74 12)(font "Arial" ))
+		(text "drawing_request_1" (rect 153 27 227 39)(font "Arial" ))
+		(line (pt 248 32)(pt 232 32)(line_width 1))
+	)
+	(port
+		(pt 248 48)
+		(output)
+		(text "drawing_request_2" (rect 0 0 75 12)(font "Arial" ))
+		(text "drawing_request_2" (rect 152 43 227 55)(font "Arial" ))
+		(line (pt 248 48)(pt 232 48)(line_width 1))
+	)
+	(port
+		(pt 248 64)
+		(output)
+		(text "drawing_request_3" (rect 0 0 75 12)(font "Arial" ))
+		(text "drawing_request_3" (rect 152 59 227 71)(font "Arial" ))
+		(line (pt 248 64)(pt 232 64)(line_width 1))
+	)
+	(port
+		(pt 248 80)
+		(output)
+		(text "drawing_request_4" (rect 0 0 76 12)(font "Arial" ))
+		(text "drawing_request_4" (rect 151 75 227 87)(font "Arial" ))
+		(line (pt 248 80)(pt 232 80)(line_width 1))
+	)
+	(port
+		(pt 248 96)
+		(output)
+		(text "drawing_request_5" (rect 0 0 75 12)(font "Arial" ))
+		(text "drawing_request_5" (rect 152 91 227 103)(font "Arial" ))
+		(line (pt 248 96)(pt 232 96)(line_width 1))
+	)
+	(drawing
+		(rectangle (rect 16 16 232 256)(line_width 1))
+	)
+)

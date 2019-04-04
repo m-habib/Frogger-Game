@@ -1,0 +1,59 @@
+LIBRARY ieee;
+USE ieee.std_logic_1164.all;
+USE ieee.std_logic_arith.all;
+
+
+ENTITY mux IS
+	PORT(CLK_IN					:	IN  STD_LOGIC				;	
+			resetN					:  IN	 STD_LOGIC;
+			--JumpSound : in std_logic_vector (15 downto 0);
+			AccidintSound : in std_logic_vector (15 downto 0);
+			FallInWaterSound : in std_logic_vector (15 downto 0);
+			--TreeFallSound : in std_logic_vector (15 downto 0);
+			--LevelUpSound : in std_logic_vector (15 downto 0);
+			WinSound : in std_logic_vector (15 downto 0);
+			GameOverSound : in std_logic_vector (15 downto 0);
+			InSound: in std_logic_vector (6 downto 0);
+			OutSound : out std_logic_vector (15 downto 0)
+	);
+	END mux ;
+
+
+ARCHITECTURE behave OF mux  IS
+
+	BEGIN
+
+	PROCESS ( resetN,InSound)
+	BEGIN
+	
+	if (resetN='0') then
+	outsound <= (others =>'0');
+	
+	elsif rising_edge(CLK_IN) then
+	
+	--if (Insound="0000001") then
+	--outsound<= JumpSound;
+	
+	if (insound="0000010") then
+	outsound<= AccidintSound;
+	
+	elsif (insound="0000100") then
+	outsound<= FallInWaterSound;
+	
+	--elsif (insound="0001000") then
+	--outsound<= TreeFallSound;
+	
+	--elsif (insound="0010000") then
+	--outsound<= LevelUpSound;
+	
+	elsif (insound="0100000") then
+	outsound<= WinSound;
+	
+	elsif (insound="1000000") then
+	outsound<= GameOverSound;
+	
+	end if;
+	end if;
+	
+	END PROCESS;
+	END behave;
