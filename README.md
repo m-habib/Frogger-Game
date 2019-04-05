@@ -3,10 +3,9 @@ Frogger Game - VHDL<br/>
 Sep, 2018
 
 In this project I developed a Frogger game in VHDL. <br/>
-<p align="center">
-<img src="images/frogger.jpg" width="40%" height="40%">
-</p>
 
+**GamePlay Video**  
+[![Watch the video](images/Frogger_play.png)](https://youtu.be/YOs4VsnLfNM)
 
 
 **Architecture and Interface**
@@ -28,7 +27,4 @@ In this project I developed a Frogger game in VHDL. <br/>
 <p align="center">
 <img src="images/statemachine.png" width="70%" height="70%">
 </p>
-
-**GamePlay Video**  
-[![Watch the video](images/Frogger_play.png)](https://youtu.be/YOs4VsnLfNM)
 
